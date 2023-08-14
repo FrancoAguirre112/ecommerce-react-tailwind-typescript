@@ -9,6 +9,10 @@ type CarrouselProps = {
 const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  if (!content) {
+    return null;
+  }
+
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % content.length);
   };
@@ -18,6 +22,8 @@ const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
       (prevSlide) => (prevSlide - 1 + content.length) % content.length
     );
   };
+
+  
 
   return (
     <div className="relative h-full">

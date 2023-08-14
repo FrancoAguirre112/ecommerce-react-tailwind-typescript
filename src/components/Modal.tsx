@@ -5,14 +5,12 @@ interface ModalProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  direction: "left" | "right";
 }
 
 export default function Modal({
   open,
   onClose,
   children,
-  direction = "left",
 }: ModalProps) {
   const overlayOpacity = open ? "opacity-50" : "opacity-0 pointer-events-none";
   const modalPosition = open ? `left-0` : `-left-[200%]`;

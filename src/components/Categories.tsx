@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useCategories } from "../hooks/useCategories";
-import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
-  const { categories, loading, error, getCategories } = useCategories();
+  const { categories, error, getCategories } = useCategories();
 
   useEffect(() => {
     getCategories();
