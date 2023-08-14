@@ -10,32 +10,24 @@ import truck from "../assets/icons/truck.svg";
 import repeat from "../assets/icons/repeat.svg";
 import AddToCartBtn from "../components/addToCartBtn";
 import Section from "../components/Section";
-import { useProducts } from "../hooks/useProducts";
-import Product from "../components/Product";
 import Recommended from "../components/Recommended";
-import { ProductType } from "../types";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const { product, getProduct, loading, error } = useProductDetail();
-  const { products, getProducts } = useProducts();
   const { id } = useParams();
-  const [recommended, setRecommended] = useState<ProductType[]>([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProduct(Number(id));
   }, [id, getProduct]);
 
-  useEffect(() => {
-    getProducts(1, "", product?.category);
-    setRecommended(
-      products.filter((product) => {
-        return product.id !== Number(id);
-      })
-    );
-  }, [product, id]);
+  
+  if (loading) {
+    return <Spinner />;
+  }
 
-  if (loading) { return <Spinner />}
-  if (error) { return <div>{error}</div>}
+  if(!product || error) {return navigate("/store")}
 
   return (
     <>
@@ -43,9 +35,9 @@ function Detail() {
         {product && (
           <div className="flex-row lg:flex gap-12">
             <div className="mx-[-1rem]">
-            <ImageCarousel images={product.image} />
+              <ImageCarousel images={product.image} />
             </div>
-            
+
             <div>
               <div>
                 <h2 className="text-icon font-medium text-lg mt-6 mb-7">
@@ -88,9 +80,7 @@ function Detail() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Icon iconLink={star} />
-                  <h2 className="text-icon font-medium text-md">
-                    Fit for You
-                  </h2>
+                  <h2 className="text-icon font-medium text-md">Fit for You</h2>
                 </div>
                 <div className="flex items-center gap-3">
                   <Icon iconLink={truck} />
@@ -114,9 +104,7 @@ function Detail() {
           <Section title="Similar Products">
             <div className="mt-4">
               <Recommended
-                items={recommended.map((prod) => {
-                  return <Product product={prod} />;
-                })}
+                product={product}
               />
             </div>
           </Section>

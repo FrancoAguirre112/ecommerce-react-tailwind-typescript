@@ -3,7 +3,7 @@ import arrowLeft from "../assets/icons/arrowLeft.svg";
 import arrowRight from "../assets/icons/arrowRight.svg";
 
 type CarrouselProps = {
-  content: React.ReactNode[] | undefined;
+  content?: React.ReactNode[];
 };
 
 const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
