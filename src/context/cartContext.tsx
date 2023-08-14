@@ -20,7 +20,7 @@ type CartContextType = {
 const cartContext = createContext<CartContextType | null>(null);
 
 // Create the provider component
-export const CartContextProvider: React.FC = ({ children }) => {
+export const CartContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<ProductType[]>([]);
 
   // Add item to cart
@@ -41,8 +41,8 @@ export const CartContextProvider: React.FC = ({ children }) => {
     [cartItems]
   );
 
-   // Remove single item from cart
-   const removeSingleFromCart = useCallback(
+  // Remove single item from cart
+  const removeSingleFromCart = useCallback(
     (itemId: number) => {
       const itemIndex = cartItems.findIndex((item) => item.id === itemId);
       if (itemIndex !== -1) {

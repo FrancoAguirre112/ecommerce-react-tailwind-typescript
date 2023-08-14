@@ -51,7 +51,7 @@ const Cart = () => {
         <Link
           onClick={() => {
             uniqueItemsIds.forEach((id) => {
-              removeFromCart(id);
+              removeFromCart(Number(id));
             });
           }}
           to="/success"

@@ -66,7 +66,7 @@ function Store() {
         </div>
       </div>
 
-      <Modal open={isFiltersOpen} onClose={handleClick} direction="left">
+      <Modal open={isFiltersOpen} onClose={handleClick}>
         <div onClick={handleClick}>
           <Filters />
         </div>

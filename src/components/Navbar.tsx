@@ -78,7 +78,7 @@ export default function Navbar() {
         </Link>
       </header>
 
-      <Modal open={isMenuOpen} onClose={handleClick} direction="left">
+      <Modal open={isMenuOpen} onClose={handleClick} >
         <div className="flex flex-col gap-4">
           <Search />
           {navLinks.map((link) => (

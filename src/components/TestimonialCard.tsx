@@ -1,7 +1,7 @@
 type TestimonialProps = {
   img: string,
   name: string,
-  children: React.ReactNode[] | undefined;
+  children: React.ReactNode | undefined;
 }
 
 const TestimonialCard: React.FC<TestimonialProps> = ({ img, name, children }) => {
