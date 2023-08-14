@@ -21,7 +21,7 @@ const Categories = () => {
           key={category}
           className="grid grid-cols-2 text-[1rem] font-bold stroke-secondary transition-all hover:text-black hover:stroke-black"
         >
-          <div>{category[0].toUpperCase() + category.slice(1)}</div>
+          <div>{category[0]?.toUpperCase() + category?.slice(1)}</div>
           <div className="flex justify-end ">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,7 @@ import { ProductType } from "../types";
 const Product = ({ product }: { product: ProductType }) => {
   return (
     <Link to={`/product/${product.id}`}>
-      <li
+      <div
         key={product.id}
         className="mx-auto max-w-md min-w-full flex mb-10  flex-col gap-2 "
       >
@@ -29,7 +29,7 @@ const Product = ({ product }: { product: ProductType }) => {
             <p className="text-gray-900">${product.price}</p>
           </div>
         </div>
-      </li>
+      </div>
     </Link>
   );
 };
