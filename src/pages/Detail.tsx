@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useProductDetail } from "../hooks/useProductDetail";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Spinner from "../components/Spinner";
 import ImageCarousel from "../components/ImageCarousell";
 import Icon from "../components/Icon";
@@ -11,23 +11,37 @@ import repeat from "../assets/icons/repeat.svg";
 import AddToCartBtn from "../components/addToCartBtn";
 import Section from "../components/Section";
 import Recommended from "../components/Recommended";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Detail() {
   const { product, getProduct, loading, error } = useProductDetail();
   const { id } = useParams();
-  const navigate = useNavigate()
 
   useEffect(() => {
     getProduct(Number(id));
   }, [id, getProduct]);
 
-  
   if (loading) {
     return <Spinner />;
   }
 
-  if(!product || error) {return navigate("/store")}
+  if (!product || error) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center mx-4 lg:mx-24">
+        <h1>
+          The product you tried to reach does not exist, please search another
+          one.
+        </h1>
+
+        <Link
+          to="/store"
+          className="w-full lg:w-[50%] mt-6 bg-main flex items-center justify-center text-lg text-white px-10 py-3 gap-3 font-semibold rounded-lg hover:scale-110 transition-transform"
+        >
+          <button className="flex items-center gap-2">Shop</button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -103,9 +117,7 @@ function Detail() {
         <div className="mt-16">
           <Section title="Similar Products">
             <div className="mt-4">
-              <Recommended
-                product={product}
-              />
+              <Recommended product={product} />
             </div>
           </Section>
         </div>
