@@ -5,7 +5,6 @@ import Modal from "./Modal";
 import Search from "./Search";
 import { routes } from "../config/router/paths";
 import menuHamburger from "../assets/icons/menuHamburger.svg";
-import cart from "../assets/icons/cart.svg";
 import menuArrowRight from "../assets/icons/menuArrowRight.svg";
 
 export default function Navbar() {
@@ -38,7 +37,9 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className={`flex gap-8 text-lg font-semibold ${currentUrl.includes(link.to)  ? "underline" : ""}`}
+              className={`flex gap-8 text-lg font-semibold ${
+                currentUrl.includes(link.to) ? "underline" : ""
+              }`}
             >
               <h1>{link.text}</h1>
               <div className="flex justify-end"></div>
@@ -49,9 +50,32 @@ export default function Navbar() {
         <div className="hidden justify-center lg:flex">
           <Search />
         </div>
-        <div className="bg-gray-200 p-2 rounded-lg">
-          <img src={cart} alt="cart" />
-        </div>
+        <Link
+          to={"/cart"}
+          className={` ${
+            currentUrl.includes("cart")
+              ? "bg-main text-white"
+              : "bg-gray-200 text-secondary"
+          } p-2 rounded-lg`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M17 17h-11v-14h-2"></path>
+            <path d="M6 5l14 1l-1 7h-13"></path>
+          </svg>
+        </Link>
       </header>
 
       <Modal open={isMenuOpen} onClose={handleClick} direction="left">

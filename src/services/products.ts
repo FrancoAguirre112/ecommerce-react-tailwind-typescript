@@ -1,8 +1,7 @@
 import { ProductType } from "../types";
-//TODO: Change inline api url for .env
 export const productsFetch = async (page: number, category: string) => {
   try {
-    const response = await fetch(`https://fakestoreapi.com/products${category && category !== "all" ? `/category/${category}` : ""}?limit=${6*page}`);
+    const response = await fetch(`${import.meta.env.VITE_PRODUCT_LIST_API}${category && category !== "all" ? `/category/${category}` : ""}?limit=${6*page}`);
     const json = await response.json();
 
     const products = json;

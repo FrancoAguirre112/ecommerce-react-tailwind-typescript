@@ -10,7 +10,13 @@ export default {
     },
     extend: {
       backgroundColor: {
-        footer: '#111111'
+        footer: '#111111',
+        main: '#8A33FD',
+        secondary: '#F6F6F6',
+        icon: '#807D7E'
+      },
+      textColor: {
+        secondary: '#8A8989',
       }
     }
   },

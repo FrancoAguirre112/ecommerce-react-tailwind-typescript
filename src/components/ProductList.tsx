@@ -1,9 +1,8 @@
 import { useProducts } from "../hooks/useProducts";
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import Product from "./Product";
 import Spinner from "./Spinner";
 import { ProductType } from "../types";
-import useInfiniteScroll from "../hooks/useInfiniteScroll";
 
 interface ProductListProps {
   search?: string;
@@ -11,15 +10,14 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({search = "", category=""}) => {
-  const { products, loading, error, getProducts, hasMore } = useProducts();
-  const observerRef = useRef<HTMLDivElement>(null);
-
-  // useInfiniteScroll(getProducts, "Men", observerRef, 0);
+  const { products, loading, error, getProducts} = useProducts();
 
   useEffect(() => {
     getProducts(4, search, category)
   }, [search, category])
 
+  if (loading) { return <Spinner />}
+  if (error) { return <div>{error}</div>}
  
 
   return (
@@ -31,9 +29,6 @@ const ProductList: React.FC<ProductListProps> = ({search = "", category=""}) => 
           </li>
         ))}
       </ul>
-      <div ref={observerRef}></div>
-      {loading && <Spinner />}
-      {error && <div>{error}</div>}
     </>
   );
 };

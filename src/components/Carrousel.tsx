@@ -3,7 +3,7 @@ import arrowLeft from "../assets/icons/arrowLeft.svg";
 import arrowRight from "../assets/icons/arrowRight.svg";
 
 type CarrouselProps = {
-  content: React.ReactNode[];
+  content: React.ReactNode[] | undefined;
 };
 
 const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
@@ -21,10 +21,10 @@ const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
 
   return (
     <div className="relative h-full">
-      {content.map((slide, index) => (
+      {content?.map((slide, index) => (
         <div
           key={index}
-          className={`absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-300 ${
+          className={`absolute h-full w-full transition-opacity duration-300 ${
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -32,7 +32,7 @@ const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
         </div>
       ))}
 
-    <div className="absolute inset-0 z-[-1]">{content[currentSlide]}</div>
+      <div className="relative h-full inset-0 z-[-1]">{content[currentSlide]}</div>
 
       <div className="absolute left-0 bottom-0 top-0 flex items-center justify-start">
         <button className="overflow-hidden" onClick={previousSlide}>
@@ -56,7 +56,7 @@ const Carrousel: React.FC<CarrouselProps> = ({ content }) => {
 
       <div className="absolute bottom-4 flex justify-center items-center w-full rounded-full">
         <div className="h-2 flex rounded-full bg-gray-400 overflow-hidden">
-          {content.map((_, index) => (
+          {content?.map((_, index) => (
             <button
               key={index}
               onClick={() => {

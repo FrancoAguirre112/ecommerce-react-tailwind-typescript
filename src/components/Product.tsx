@@ -3,10 +3,10 @@ import { ProductType } from "../types";
 
 const Product = ({ product }: { product: ProductType }) => {
   return (
-    <Link className="" to={`/product/${product.id}`}>
+    <Link to={`/product/${product.id}`}>
       <li
         key={product.id}
-        className="mx-auto max-w-md min-w-full flex mb-10  flex-col gap-4 h-[16rem] lg:h-[23rem] "
+        className="mx-auto max-w-md min-w-full flex mb-10  flex-col gap-2 "
       >
         <img
           className="h-full w-full object-cover object-center border-[1px] rounded-md"
@@ -14,7 +14,7 @@ const Product = ({ product }: { product: ProductType }) => {
           alt={`product image of ${product.title}`}
         />
 
-        <div className="flex justify-between gap-1">
+        <div className="flex flex-col md:flex-row justify-between gap-1">
           <div className="flex flex-col overflow-hidden">
             <h2 className="font-semibold  text-gray-900 line-clamp-1 text-sm lg:text-base">
               {product.title}
@@ -25,7 +25,7 @@ const Product = ({ product }: { product: ProductType }) => {
             </p>
           </div>
 
-          <div className="flex items-center min-w-[5.41rem] justify-center px-4 font-semibold bg-gray-200 rounded-lg text-xs lg:text-sm">
+          <div className="flex items-center min-w-[5.41rem] min-h-[2rem] justify-center px-4 font-semibold bg-gray-200 rounded-lg text-xs lg:text-sm">
             <p className="text-gray-900">${product.price}</p>
           </div>
         </div>

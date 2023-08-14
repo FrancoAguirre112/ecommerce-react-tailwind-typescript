@@ -45,7 +45,7 @@ function Store() {
 
             <button
               onClick={handleClick}
-              className="flex justify-center items-center text-xl h-full w-full font-semibold text-[#8A8989] border-l-[1px] lg:hidden"
+              className="flex justify-center items-center text-xl h-full w-full font-semibold text-secondary border-l-[1px] lg:hidden"
             >
               <h1>Filter</h1>
               <img src={filterIcon} alt="filters" />
